@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aglaonema restore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f4f7f2;
+      --card: #ffffff;
+      --ink: #1f2a1f;
+      --muted: #5f6b5f;
+      --line: #d7e0d4;
+      --accent: #3f6b4a;
+      --accent-soft: #e6f0e7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "DM Sans", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 500px at 10% -10%, #e8f2e4 0%, transparent 55%),
+        radial-gradient(900px 400px at 100% 0%, #f0ebe2 0%, transparent 50%),
+        var(--bg);
+      min-height: 100vh;
+    }
+    main {
+      width: min(720px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2.5rem 0 4rem;
+    }
+    header { margin-bottom: 2rem; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    h1 {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 600;
+      font-size: clamp(1.9rem, 5vw, 2.6rem);
+      line-height: 1.15;
+      margin: 0.9rem 0 0.55rem;
+    }
+    .lede {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 38rem;
+    }
+    .meta {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .timeline {
+      list-style: none;
+      margin: 2rem 0 0;
+      padding: 0;
+      display: grid;
+      gap: 1.25rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 1.1rem;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(31, 42, 31, 0.05);
+    }
+    .card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      background: #e8ece6;
+    }
+    .card-body { padding: 1.1rem 1.2rem 1.25rem; }
+    .when {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.75rem;
+      align-items: baseline;
+      margin-bottom: 0.35rem;
+    }
+    .date {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 600;
+      font-size: 1.15rem;
+    }
+    .time {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .label {
+      margin: 0.15rem 0 0;
+      font-weight: 600;
+    }
+    .caption {
+      margin: 0.35rem 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    footer {
+      margin-top: 2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <span class="eyebrow">Plant progress</span>
+      <h1>Aglaonema restore</h1>
+      <p class="lede">Chinese Evergreen coming back from wind-snapped canes. Each shot is stamped with Auckland date and time.</p>
+      <p class="meta" id="count"></p>
+    </header>
+    <ol class="timeline" id="gallery"></ol>
+    <footer>New photos get added as the restore continues.</footer>
+  </main>
+  <script>
+    async function load() {
+      const photos = [
+  {
+    "id": "before",
+    "file": "before-distressed.jpg",
+    "label": "Before — distressed",
+    "caption": "Still leafed out, but already struggling",
+    "takenAt": "2026-08-30T12:00:00+12:00",
+    "displayDate": "before 31 Aug 2026",
+    "displayTime": "pre-outdoor"
+  },
+  {
+    "id": "wind-snap",
+    "file": "2026-08-31-wind-snap.jpg",
+    "label": "Wind snap — outdoors",
+    "caption": "Put outside for more sun; wind snapped it",
+    "takenAt": "2026-08-31T20:00:00+12:00",
+    "displayDate": "Sun 31 Aug 2026",
+    "displayTime": "evening PT"
+  },
+  {
+    "id": "baseline",
+    "file": "baseline-after-snap.jpg",
+    "label": "Baseline — canes after cleanup",
+    "caption": "Trimmed back to firm green canes",
+    "takenAt": "2026-09-05T14:26:00+12:00",
+    "displayDate": "Sat 5 Sep 2026",
+    "displayTime": "2:26 PM PT"
+  },
+  {
+    "id": "week1",
+    "file": "week1-checkin.jpg",
+    "label": "Week 1 check-in",
+    "caption": "Indoors by the window; canes still firm and green",
+    "takenAt": "2026-09-06T11:42:00+12:00",
+    "displayDate": "Sun 6 Sep 2026",
+    "displayTime": "11:42 AM PT"
+  }
+];
+      // Chronological by takenAt
+      photos.sort((a, b) => new Date(a.takenAt) - new Date(b.takenAt));
+      document.getElementById('count').textContent =
+        photos.length + ' photo' + (photos.length === 1 ? '' : 's') + ' so far';
+      const root = document.getElementById('gallery');
+      root.innerHTML = photos.map((p) => `
+        <li class="card">
+          <img src="./photos/${p.file}" alt="${p.label}" loading="lazy" />
+          <div class="card-body">
+            <div class="when">
+              <span class="date">${p.displayDate}</span>
+              <span class="time">${p.displayTime}</span>
+            </div>
+            <p class="label">${p.label}</p>
+            <p class="caption">${p.caption || ''}</p>
+          </div>
+        </li>
+      `).join('');
+    }
+    load().catch((err) => {
+      document.getElementById('count').textContent = 'Could not load photos.json';
+      console.error(err);
+    });
+  </script>
+</body>
+</html>

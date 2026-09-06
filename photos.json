@@ -1,0 +1,38 @@
+[
+  {
+    "id": "before",
+    "file": "before-distressed.jpg",
+    "label": "Before — distressed",
+    "caption": "Still leafed out, but already struggling",
+    "takenAt": "2026-08-30T12:00:00+12:00",
+    "displayDate": "before 31 Aug 2026",
+    "displayTime": "pre-outdoor"
+  },
+  {
+    "id": "wind-snap",
+    "file": "2026-08-31-wind-snap.jpg",
+    "label": "Wind snap — outdoors",
+    "caption": "Put outside for more sun; wind snapped it",
+    "takenAt": "2026-08-31T20:00:00+12:00",
+    "displayDate": "Sun 31 Aug 2026",
+    "displayTime": "evening PT"
+  },
+  {
+    "id": "baseline",
+    "file": "baseline-after-snap.jpg",
+    "label": "Baseline — canes after cleanup",
+    "caption": "Trimmed back to firm green canes",
+    "takenAt": "2026-09-05T14:26:00+12:00",
+    "displayDate": "Sat 5 Sep 2026",
+    "displayTime": "2:26 PM PT"
+  },
+  {
+    "id": "week1",
+    "file": "week1-checkin.jpg",
+    "label": "Week 1 check-in",
+    "caption": "Indoors by the window; canes still firm and green",
+    "takenAt": "2026-09-06T11:42:00+12:00",
+    "displayDate": "Sun 6 Sep 2026",
+    "displayTime": "11:42 AM PT"
+  }
+]
